@@ -8,7 +8,7 @@ using StardewValley;
 using StardewValley.Menus;
 using StardewModdingAPI.Events;
 using StardewValley.Locations;
-using Entoarox.Framework.Events;
+using SpaceCore.Events;
 
 namespace SeedCatalogue
 {
@@ -20,13 +20,13 @@ namespace SeedCatalogue
         {
             instance = this;
 
-            LocationEvents.CurrentLocationChanged += locChanged;
-            MoreEvents.ActionTriggered += actionTriggered;
+            PlayerEvents.Warped += locChanged;
+            SpaceEvents.ActionActivated += actionTriggered;
 
             Helper.ConsoleCommands.Add("seedcatalogue", "Open the seed catalogue. Do `seedcatalogue cheat` to show all seeds, even for crops you haven't shipped yet.", command);
         }
 
-        private void locChanged( object sender, EventArgsCurrentLocationChanged args )
+        private void locChanged( object sender, EventArgsPlayerWarped args )
         {
             if ( args.NewLocation is SeedShop ss )
             {
@@ -34,7 +34,7 @@ namespace SeedCatalogue
             }
         }
 
-        private void actionTriggered( object sender, EventArgsActionTriggered args )
+        private void actionTriggered( object sender, EventArgsAction args )
         {
             if (args.Action == "SeedCatalogue")
                 openSeedCatalogue();
@@ -62,8 +62,8 @@ namespace SeedCatalogue
                 {
                     var item = new StardewValley.Object(crop.Key, int.MaxValue);
                     // Strawberry seeds have a default price of 0, but in the festival shop are set to 100
-                    if (!item.bigCraftable && item.parentSheetIndex == 745)
-                        item.price = 100 / 2; // Without /2 it comes out to 200
+                    if (!item.bigCraftable.Value && item.ParentSheetIndex == 745)
+                        item.Price = 100 / 2; // Without /2 it comes out to 200
                     items.Add(item);
                 }
             }

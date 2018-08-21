@@ -1,19 +1,15 @@
 {
   "Name": "Seed Catalogue",
   "Author": "spacechase0",
-  "Version": {
-    "MajorVersion": 1,
-    "MinorVersion": 0,
-    "PatchVersion": 0,
-    "Build": ""
-  },
+  "Version": "1.0.2",
   "Description": "A shopping catalogue for out-of-season seeds.",
   "UniqueID": "spacechase0.SeedCatalogue",
   "PerSaveConfigs": false,
   "EntryDll": "SeedCatalogue.dll",
+  "UpdateKeys": [ "Nexus:1640", "Chucklefish:5090", "spacechase0:seed-catalogue" ],
   "Dependencies": [
     {
-      "UniqueID": "Entoarox.EntoaroxFramework"
+      "UniqueID": "spacechase0.SpaceCore"
     }
   ]
 }

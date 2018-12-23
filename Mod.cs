@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
@@ -42,9 +39,7 @@ namespace SeedCatalogue
 
         private void command( string cmd, string[] args )
         {
-            bool cheat = false;
-            if (args.Length >= 1 && args[0] == "cheat")
-                cheat = true;
+            bool cheat = args.Length >= 1 && args[0] == "cheat";
 
             openSeedCatalogue(cheat);
         }
